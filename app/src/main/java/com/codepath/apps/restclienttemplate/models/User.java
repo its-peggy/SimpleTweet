@@ -2,12 +2,16 @@ package com.codepath.apps.restclienttemplate.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+@Parcel
 public class User {
 
     public String name;
     public String screenName;
     public String profileImageUrl;
+
+    public User() {};
 
     // creates a User object from a JSON object representing a user
     // only including relevent fields
