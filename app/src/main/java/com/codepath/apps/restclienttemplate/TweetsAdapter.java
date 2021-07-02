@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +13,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.jetbrains.annotations.NotNull;
+import org.parceler.Parcels;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
 
@@ -67,7 +74,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     }
 
     // define a viewholder
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private static final int SECOND_MILLIS = 1000;
         private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
@@ -79,26 +86,61 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvScreenName;
         TextView tvRelativeTimestamp;
         ImageView ivTweetImage;
+        TextView tvName;
+        ImageView ivVerified;
 
         public ViewHolder(@NonNull @NotNull View itemView) { // itemView = 1 row in the RV
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
-            tvBody = itemView.findViewById(R.id.tvBody);
-            tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvBody = itemView.findViewById(R.id.tvDetailBody);
+            tvName = itemView.findViewById(R.id.tvName);
             tvRelativeTimestamp = itemView.findViewById(R.id.tvRelativeTimestamp);
             ivTweetImage = itemView.findViewById(R.id.ivTweetImage);
+            tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            ivVerified = itemView.findViewById(R.id.ivDetailVerified);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Tweet tweet) { // makes the onBindViewHolder method in TweetsAdapter cleaner
             tvBody.setText(tweet.body);
-            tvScreenName.setText(tweet.user.screenName);
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
-            tvRelativeTimestamp.setText(getRelativeTimeAgo(tweet.createdAt));
+            String screenNameWithAt = "@"+tweet.user.screenName;
+            tvScreenName.setText(screenNameWithAt);
+            Glide.with(context)
+                    .load(tweet.user.profileImageUrl)
+                    .transform(new CircleCrop())
+                    .into(ivProfileImage);
+            String relTimestamp = context.getString(R.string.dot_separator) + " " + getRelativeTimeAgo(tweet.createdAt);
+            tvRelativeTimestamp.setText(relTimestamp);
             if (tweet.mediaURL.isEmpty()) {
                 ivTweetImage.setVisibility(View.GONE);
             } else {
                 // Log.d("asdfjkl", tweet.mediaURL);
-                Glide.with(context).load(tweet.mediaURL).into(ivTweetImage);
+                int radius = 25; // corner radius, higher value = more rounded
+                int margin = 0; // crop margin, set to 0 for corners with no crop
+                Glide.with(context)
+                        .load(tweet.mediaURL)
+                        // .transform(new RoundedCornersTransformation(radius, margin))
+                        .transform(new MultiTransformation(new CenterCrop(), new RoundedCornersTransformation(radius, margin)))
+                        .into(ivTweetImage); // load INTO the ivPoster view
+            }
+            tvName.setText(tweet.user.name);
+            if (!tweet.user.verified) {
+                ivVerified.setVisibility(View.GONE);
+            }
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            // if position exists in the view
+            if (position != RecyclerView.NO_POSITION) {
+                Tweet tweet = tweets.get(position);
+                // intent for new activity
+                Intent intent = new Intent(context, TweetDetailActivity.class);
+                intent.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
+                // show the new activity
+                context.startActivity(intent);
             }
         }
 

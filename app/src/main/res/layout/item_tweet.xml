@@ -6,54 +6,95 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp">
 
-    <ImageView
-        android:id="@+id/ivProfileImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/tvScreenName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@id/ivDetailVerified"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto"
+        android:singleLine="true"
+        android:textColor="#8F8E8E"
+        android:textStyle="normal"
+        tools:text="@peggyy35" />
+
+    <ImageView
+        android:id="@+id/ivProfileImage"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="0dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="peggyy35" />
+        android:fontFamily="@font/roboto"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        tools:text="Peggy" />
 
     <TextView
-        android:id="@+id/tvBody"
+        android:id="@+id/tvDetailBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvScreenName"
+        android:layout_below="@+id/tvName"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:layout_toEndOf="@+id/ivProfileImage"
+        android:autoLink="all"
+        android:fontFamily="@font/roboto"
+        android:textColor="#000000"
+        android:textColorLink="@color/twitter_blue"
         tools:text="This is my tweet!!" />
 
     <TextView
         android:id="@+id/tvRelativeTimestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:singleLine="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
         android:layout_toEndOf="@+id/tvScreenName"
+        android:fontFamily="@font/roboto"
+        android:textColor="#8F8E8E"
         tools:text="5m" />
 
     <ImageView
         android:id="@+id/ivTweetImage"
-        android:layout_width="260dp"
+        android:layout_width="338dp"
         android:layout_height="176dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/tvDetailBody"
         android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="57dp"
-        android:layout_marginEnd="87dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/ivDetailVerified"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/tvName"
+        app:srcCompat="@mipmap/ic_verified"
+        tools:srcCompat="@mipmap/ic_verified" />
+
 </RelativeLayout>

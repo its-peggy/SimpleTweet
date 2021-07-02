@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -49,7 +50,7 @@ public class TimelineActivity extends AppCompatActivity {
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
-        // find the recyclerview and button
+        // find the recyclerview
         rvTweets = findViewById(R.id.rvTweets);
         btnLogout = findViewById(R.id.btnLogout);
         // initialize the list of tweets

@@ -13,12 +13,13 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".ComposeActivity"></activity>
+        <activity android:name=".TweetDetailActivity"></activity>
+        <activity android:name=".ComposeActivity" />
         <activity android:name=".TimelineActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

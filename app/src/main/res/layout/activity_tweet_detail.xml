@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TweetDetailActivity">
+
+    <ImageView
+        android:id="@+id/ivDetailProfileImage"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvDetailName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_toEndOf="@+id/ivDetailProfileImage"
+        android:fontFamily="@font/roboto"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        tools:text="Peggy" />
+
+    <ImageView
+        android:id="@+id/ivDetailVerified"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/tvDetailName"
+        app:srcCompat="@mipmap/ic_verified"
+        tools:srcCompat="@mipmap/ic_verified" />
+
+    <TextView
+        android:id="@+id/tvDetailScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDetailName"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/ivDetailProfileImage"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto"
+        android:singleLine="true"
+        android:textColor="#8F8E8E"
+        android:textStyle="normal"
+        tools:text="@peggyy35" />
+
+    <TextView
+        android:id="@+id/tvDetailBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivDetailProfileImage"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:autoLink="all"
+        android:fontFamily="@font/roboto"
+        android:lineSpacingExtra="4sp"
+        android:textColor="#000000"
+        android:textColorLink="@color/twitter_blue"
+        android:textSize="18sp"
+        tools:text="This is my tweet!!" />
+
+    <ImageView
+        android:id="@+id/ivDetailTweetImage"
+        android:layout_width="372dp"
+        android:layout_height="260dp"
+        android:layout_below="@+id/tvDetailBody"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="false"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/tvDetailTimeAndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivDetailTweetImage"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="false"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="0dp"
+        android:fontFamily="@font/roboto"
+        android:textColor="#8F8F8E"
+        tools:text="time" />
+
+
+</RelativeLayout>
